@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ms mermaid🧜‍♀️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #6DB3F2, #A8E6CF);
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 10px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+        }
+        
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .disk {
+            width: 150px;
+            height: 150px;
+            background: url('img/music-disk.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
+            animation: spin 5s linear infinite;
+            animation-play-state: running; /* Default running */
+        }
+
+        .music-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #E87C7C;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .music-button:hover {
+            background: #D75757;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+
+
+        /* Birthday Message */
+        .birthday-message {
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #fff;
+            font-family: 'Great Vibes', cursive;
+            animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Peacock Feather Animation */
+        .peacock-feather {
+            position: fixed;
+            top: 10%;
+            left: 5%;
+            width: 100px;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+        .peacock-feathers {
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 100px;
+            animation: float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+
+        /* Balloons */
+        .balloons {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            right: 0;
+            width: 50px;
+            height: 70px;
+            border-radius: 50%;
+            animation: floatBalloon 8s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .balloon:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBalloon {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100vh); }
+        }
+
+        /* Modal Greeting */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal-content {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+        }
+
+        .modal-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #6DB3F2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .modal-button:hover {
+            background: #4A90E2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🎉 Happy Birthday, Sakshee 🎉</h1>
+        <p>Your presence fills life with the melodies of joy 💗.</p>
+    </header>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <img src="img/sak1.jpg" alt="Memory 1">
+        <img src="img/sak4.jpg" alt="Memory 2">
+        <img src="img/sak2.jpg" alt="Memory 3">
+    </div>
+
+    <!-- Modal Greeting -->
+    <div class="modal" id="greeting-modal">
+        <div class="modal-content">
+            It's your day! 🥳 Wishing you a magical birthday filled with love and joy! 🌟
+            <button class="modal-button" onclick="closeModal()">Enter</button>
+        </div>
+    </div>
+
+    <!-- Birthday Message -->
+    <div class="birthday-message">
+        <p>"The world lights up with your smile, just as Krishna's flute fills Vrindavan with joy. Happy Birthday to the sweetest melody in my life."</p>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="disk"></div>
+        <button id="play-pause" class="music-button">⏸️</button>
+    </div>
+
+    <!-- Audio -->
+    <audio id="birthday-audio" src="audio/happy-birthday-jazz-171120.mp3" autoplay></audio>
+
+
+     <!-- Peacock Feather -->
+     <img src="img/feather.png" class="peacock-feather" alt="Peacock Feather">
+     <img src="img/feather.png" class="peacock-feathers" alt="Peacock Feather">
+
+     <!-- Balloons -->
+     <div class="balloons">
+        <div class="balloon" style="background-color: #FFD700;"></div>
+        <div class="balloon" style="background-color: #FF69B4;"></div>
+        <div class="balloon" style="background-color: #87CEFA;"></div>
+    </div>
+
+    <script>
+        
+       
+            const audio = document.getElementById("birthday-audio");
+            const playPauseButton = document.getElementById("play-pause");
+            const disk = document.querySelector(".disk");
+            
+        
+            function closeModal() {
+                modal.classList.add('hidden');
+                audio.play(); // Play audio after user interaction
+                disk.style.animationPlayState = "running";
+                playPauseButton.textContent = "⏸️"; // Set play-pause button to default state
+            }
+        
+            playPauseButton.addEventListener("click", () => {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseButton.textContent = "⏸️";
+                    disk.style.animationPlayState = "running";
+                } else {
+                    audio.pause();
+                    playPauseButton.textContent = "▶️";
+                    disk.style.animationPlayState = "paused";
+                }
+            });
+        
+        // Fireworks Effect
+        function launchFireworks() {
+            const duration = 4 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 50,
+                    angle: Math.random() * 360,
+                    spread: 70,
+                    startVelocity: 30,
+                    origin: {
+                        x: Math.random(),
+                        y: Math.random() - 0.2
+                    }
+                });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+
+        // Show Fireworks on Page Load
+        window.onload = () => {
+            launchFireworks();
+        };
+
+        // Modal Functionality
+        const modal = document.getElementById('greeting-modal');
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+       
+    </script>
+</body>
+</html>
