@@ -267,37 +267,52 @@
     </div>
 
     <script>
-        
-       
-            const audio = document.getElementById("birthday-audio");
-            const playPauseButton = document.getElementById("play-pause");
-            const disk = document.querySelector(".disk");
-            
-        
-            function closeModal() {
-                modal.classList.add('hidden');
-                audio.play(); // Play audio after user interaction
+        // Variables
+        const audio = document.getElementById("birthday-audio");
+        const playPauseButton = document.getElementById("play-pause");
+        const disk = document.querySelector(".disk");
+        const modal = document.getElementById('greeting-modal');
+    
+        // Initialize on Page Load
+        function initializePlayer() {
+            // Add Fireworks Effect
+            launchFireworks();
+    
+            // Show Modal
+            modal.style.display = 'flex';
+    
+            // Autoplay is blocked; Start with paused state
+            disk.style.animationPlayState = "paused";
+            playPauseButton.textContent = "▶️"; // Set play button by default
+        }
+    
+        // Play/Pause Music
+        playPauseButton.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = "⏸️";
                 disk.style.animationPlayState = "running";
-                playPauseButton.textContent = "⏸️"; // Set play-pause button to default state
+            } else {
+                audio.pause();
+                playPauseButton.textContent = "▶️";
+                disk.style.animationPlayState = "paused";
             }
-        
-            playPauseButton.addEventListener("click", () => {
-                if (audio.paused) {
-                    audio.play();
-                    playPauseButton.textContent = "⏸️";
-                    disk.style.animationPlayState = "running";
-                } else {
-                    audio.pause();
-                    playPauseButton.textContent = "▶️";
-                    disk.style.animationPlayState = "paused";
-                }
-            });
-        
+        });
+    
+        // Close Modal
+        function closeModal() {
+            modal.classList.add('hidden'); // Hide the modal
+            modal.style.display = 'none';
+            audio.play(); // Start the music when modal is closed
+            playPauseButton.textContent = "⏸️"; // Update button to pause state
+            disk.style.animationPlayState = "running"; // Start disk animation
+        }
+    
         // Fireworks Effect
         function launchFireworks() {
             const duration = 4 * 1000;
             const end = Date.now() + duration;
-
+    
             (function frame() {
                 confetti({
                     particleCount: 50,
@@ -314,19 +329,11 @@
                 }
             })();
         }
-
-        // Show Fireworks on Page Load
-        window.onload = () => {
-            launchFireworks();
-        };
-
-        // Modal Functionality
-        const modal = document.getElementById('greeting-modal');
-        function closeModal() {
-            modal.classList.add('hidden');
-        }
-
-       
+    
+        // Set up page on load
+        window.onload = initializePlayer;
     </script>
+
+    
 </body>
 </html>
